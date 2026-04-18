@@ -46,6 +46,11 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  --color-brand: oklch(0.62 0.16 240);
+  --color-brand-1: oklch(32.14% 0.114 270.72);
+  --color-brand-2: oklch(86.20% 0.057 264.21);
+  --font-sans: var(--font-roboto-sans);
+  --font-heading: var(--font-roboto-slab);
 }
 
 :root {
@@ -121,10 +126,25 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
   html {
     @apply font-sans;
   }
+}
+
+html {
+  @apply font-sans;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
 }
