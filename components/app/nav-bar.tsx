@@ -3,7 +3,7 @@ import { Search } from "lucide-react"
 export default function NavBar() {
     return (
         <div className="px-5 py-5 bg-brand-1">
-            <div className="max-w-340 mx-auto flex gap-6 items-center text-lg text-white">
+            <div className="max-w-340 mx-auto flex gap-6 items-center  tracking-wider text-white">
                 <ul className="flex gap-6 mr-auto">
                     <li><a className="hover:text-[#e0e0e0]" href="">Home</a></li>
                     <li><a className="hover:text-[#e0e0e0]" href="">About Us</a></li>
