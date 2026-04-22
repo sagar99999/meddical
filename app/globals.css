@@ -148,3 +148,25 @@ h5,
 h6 {
   font-family: var(--font-heading);
 }
+
+/*styles for swiper carousel*/
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-pagination-bullet {
+  height: 1.1rem !important;
+  width: 1.1rem !important;
+  background-color: #1f2b6c !important;
+  margin: 0 .5rem !important;
+}
+
+.swiper-pagination-bullet-active {
+  height: 1.1rem !important;
+  width: 1.1rem !important;
+}
+
+.testimonial-carousel {
+  background-color: #bfd2f8 !important;
+}
