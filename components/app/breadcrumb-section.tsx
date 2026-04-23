@@ -5,7 +5,6 @@ export default function BreadcrumbSection() {
         <>
             <div className='h-90 relative p-5'>
                 <Image src="/images/image-1.jpg" alt="contact page" fill className="object-cover object-center -z-10 absolute" />
-
                 <div className="max-w-340 h-full flex flex-wrap items-center mx-auto text-brand-1">
                     <div>
                         <span className='text-xl block tracking-wide mb-1'>Home / Contact</span>

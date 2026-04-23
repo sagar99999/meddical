@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { PhoneCall, Clock4, MapPin } from 'lucide-react';
+import Link from "next/link";
 
 export default function TopInfo() {
     return (
@@ -7,7 +8,9 @@ export default function TopInfo() {
             <div className="max-w-340 mx-auto">
                 <div className="flex gap-10">
                     <div className="flex items-center mr-auto">
-                        <Image src="/images/logo.png" alt="meddical logo" width={180} height={80} />
+                        <Link href="/">
+                            <Image src="/images/logo.png" alt="meddical logo" width={180} height={80} />
+                        </Link>
                     </div>
                     <div className="flex gap-3 items-center">
                         <PhoneCall className="size-7" />

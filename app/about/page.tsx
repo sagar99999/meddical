@@ -18,7 +18,7 @@ export default function AboutPage() {
                         </div>
                         <div>
                             <p className="uppercase text-brand text-lg font-bold tracking-widest mb-2">Welcome to Meddical</p>
-                            <h1 className='text-5xl text-brand-1 font-extrabold tracking-wide leading-15 max-w-130 mb-8'>Best Care for Your Good Health</h1>
+                            <h1 className='text-5xl text-brand-1 font-extrabold tracking-wide leading-13 max-w-130 mb-8'>Best Care for Your Good Health</h1>
                             <ul className='grid tracking-wider text-lg mb-8 grid-cols-2 gap-4 list-none'>
                                 <li className={`relative pl-8 before:content-[''] before:w-4 before:h-4 before:bg-brand before:rounded-full before:absolute before:left-0 before:top-1.5`}>All Passion for Healing</li>
                                 <li className={`relative pl-8 before:content-[''] before:w-4 before:h-4 before:bg-brand before:rounded-full before:absolute before:left-0 before:top-1.5`}>5-Star Care</li>

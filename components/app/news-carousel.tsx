@@ -42,7 +42,7 @@ function CarouselSlide() {
             </div>
             <div>
                 <p className='text-brand mb-3 tracking-wide line-clamp-2'>Monday 05, September 2021 | By Author</p>
-                <p className='text-lg tracking-wide mb-3 line-clamp-2'>This Article title goes here, but not too long.</p>
+                <p className='text-lg mb-3 line-clamp-2'>This Article title goes here, but not too long.</p>
                 <div className="flex gap-4">
                     <div className='flex gap-2 items-center'>
                         <Eye className='size-6 text-brand-1' />

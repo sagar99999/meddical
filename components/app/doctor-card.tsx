@@ -16,7 +16,7 @@ export default function DoctorCard() {
                     <LinkedInIcon size="size-5.5" />
                     <InstagramIcon size="size-5.5" />
                 </div>
-                <Link className="bg-brand-1 p-2 border-none outline-0 py-4.5 cursor-pointer text-white block w-full placeholder:text-white tracking-wider" href="/">View Profile</Link>
+                <Link className="bg-brand-1 p-2 border-none outline-0 py-4.5 cursor-pointer text-brand-2 block w-full placeholder:text-white tracking-wider" href="/">View Profile</Link>
             </div>
         </div>
     )
