@@ -18,7 +18,7 @@ export default function ServiceCard() {
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias quaerat repellendus porro impedit, omnis doloribus.
                 </p>
                 <div className="flex gap-2 items-center">
-                    <Link className="text-brand text-lg hover:underline" href="/">Learn More</Link>
+                    <Link className="text-brand text-lg hover:underline" href="/services/superman">Learn More</Link>
                     <MoveRight className="size-5" />
                 </div>
             </div>

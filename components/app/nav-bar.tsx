@@ -17,7 +17,7 @@ export default function NavBar() {
                     <button className="cursor-pointer hover:text-[#e0e0e0]">
                         <Search className="size-6" />
                     </button>
-                    <button className="bg-brand-2 tracking-wide cursor-pointer font-normal px-10 py-2 rounded-3xl text-black">Appointment</button>
+                    <Link href="/appointment" className="bg-brand-2 tracking-wide cursor-pointer font-normal px-10 py-2 rounded-3xl text-black">Appointment</Link>
                 </div>
             </div>
         </div>

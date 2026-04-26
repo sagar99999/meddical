@@ -44,11 +44,11 @@ function CarouselSlide() {
                 <p className='text-brand mb-3 tracking-wide line-clamp-2'>Monday 05, September 2021 | By Author</p>
                 <p className='text-lg mb-3 line-clamp-2'>This Article title goes here, but not too long.</p>
                 <div className="flex gap-4">
-                    <div className='flex gap-2 items-center'>
+                    <div className='flex gap-1 items-center'>
                         <Eye className='size-6 text-brand-1' />
                         <span>64</span>
                     </div>
-                    <button className='cursor-pointer flex gap-2 items-center'>
+                    <button className='cursor-pointer flex gap-1 items-center'>
                         <Heart className='size-6 text-red-600' />
                         <span>64</span>
                     </button>
@@ -64,11 +64,11 @@ function CarouselSlide() {
                 <p className='text-brand mb-3 tracking-wide line-clamp-2'>Monday 05, September 2021 | By Author</p>
                 <p className='text-lg tracking-wide mb-3 line-clamp-2'>This Article title goes here, but not too long.</p>
                 <div className="flex gap-4">
-                    <div className='flex gap-2 items-center'>
+                    <div className='flex gap-1 items-center'>
                         <Eye className='size-6 text-brand-1' />
                         <span>64</span>
                     </div>
-                    <button className='cursor-pointer flex gap-2 items-center'>
+                    <button className='cursor-pointer flex gap-1 items-center'>
                         <Heart className='size-6 text-red-600' />
                         <span>64</span>
                     </button>
@@ -84,11 +84,11 @@ function CarouselSlide() {
                 <p className='text-brand mb-3 tracking-wide line-clamp-2'>Monday 05, September 2021 | By Author</p>
                 <p className='text-lg tracking-wide mb-3 line-clamp-2'>This Article title goes here, but not too long.</p>
                 <div className="flex gap-4">
-                    <div className='flex gap-2 items-center'>
+                    <div className='flex gap-1 items-center'>
                         <Eye className='size-6 text-brand-1' />
                         <span>64</span>
                     </div>
-                    <button className='cursor-pointer flex gap-2 items-center'>
+                    <button className='cursor-pointer flex gap-1 items-center'>
                         <Heart className='size-6 text-red-600' />
                         <span>64</span>
                     </button>
@@ -104,11 +104,11 @@ function CarouselSlide() {
                 <p className='text-brand mb-3 tracking-wide line-clamp-2'>Monday 05, September 2021 | By Author</p>
                 <p className='text-lg tracking-wide mb-3 line-clamp-2'>This Article title goes here, but not too long.</p>
                 <div className="flex gap-4">
-                    <div className='flex gap-2 items-center'>
+                    <div className='flex gap-1 items-center'>
                         <Eye className='size-6 text-brand-1' />
                         <span>64</span>
                     </div>
-                    <button className='cursor-pointer flex gap-2 items-center'>
+                    <button className='cursor-pointer flex gap-1 items-center'>
                         <Heart className='size-6 text-red-600' />
                         <span>64</span>
                     </button>

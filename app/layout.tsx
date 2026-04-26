@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
-import { Roboto, Roboto_Slab } from "next/font/google";
+import { Yeseva_One, Work_Sans } from "next/font/google";
 import "./globals.css";
 import TopInfo from "@/components/app/top-info";
 import NavBar from "@/components/app/nav-bar";
 import Footer from "@/components/app/footer";
 
-const robotoSans = Roboto({
-  variable: "--font-roboto-sans",
+const workSans = Work_Sans({
+  variable: "--font-work-sans",
   subsets: ["latin"],
 });
 
-const robotoMono = Roboto_Slab({
-  variable: "--font-roboto-slab",
+const yesevaOne = Yeseva_One({
+  weight: "400",
+  variable: "--font-yeseva-one",
   subsets: ["latin"],
 });
 
@@ -28,7 +29,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${robotoSans.variable} ${robotoMono.variable} h-full antialiased`}
+      className={`${workSans.variable} ${yesevaOne.variable} h-full antialiased`}
     >
       <body suppressHydrationWarning>
         <div className="sticky top-0 z-50 shadow-2xl">

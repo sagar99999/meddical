@@ -49,8 +49,8 @@
   --color-brand: oklch(0.62 0.16 240);
   --color-brand-1: oklch(32.14% 0.114 270.72);
   --color-brand-2: oklch(86.20% 0.057 264.21);
-  --font-sans: var(--font-roboto-sans);
-  --font-heading: var(--font-roboto-slab);
+  --font-sans: var(--font-work-sans);
+  --font-heading: var(--font-yeseva-one);
 }
 
 :root {

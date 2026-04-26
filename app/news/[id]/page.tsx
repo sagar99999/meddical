@@ -2,9 +2,9 @@ import BreadcrumbSection from "@/components/app/breadcrumb-section";
 import TitleSection from "@/components/app/title-section";
 import InfoSection from "@/components/app/info-section";
 import RecentPostFilter from "@/components/app/recent-post-filter";
-import RecentPostCard from "@/components/app/recent-post-card";
+import RecentPostBlog from "@/components/app/recent-post-blog";
 
-export default function NewsPage() {
+export default function SingleNewsPage() {
     return (
         <>
             {/* BreadCrumb Section */}
@@ -12,7 +12,7 @@ export default function NewsPage() {
 
             <div className="p-5 pt-15">
                 <div className="max-w-340 flex gap-6 mx-auto">
-                    <RecentPostCard />
+                    <RecentPostBlog />
                     {/* Right Bar */}
                     <RecentPostFilter />
                 </div>
