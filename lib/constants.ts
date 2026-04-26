@@ -1,8 +1,7 @@
 // specialties
-export const specialties = ["neurology", "bones", "oncology", "cardiovascular", ,
-    "neurology", "bones", "oncology", "cardiovascular",
-    "neurology", "bones", "oncology", "cardiovascular",
-    "neurology", "bones", "oncology", "cardiovascular"
+export const specialties = ["neurology", "bones", "oncology", "otorhinolaryngology", ,
+    "opthalmology", "cadiovascular", "pulmonology", "renal medicine",
+    "gastroenterology", "urology", "dermatology", "gynaecology"
 ] as const;
 
 // schedule hours

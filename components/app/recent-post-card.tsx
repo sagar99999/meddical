@@ -7,7 +7,7 @@ export default function RecentPostCard() {
         <div className="grow">
             <div className="mb-10">
                 <div className="relative w-full h-130 mb-6">
-                    <Image className="absolute shadow-xl object-cover object-center" src="/images/image-1.jpg" alt="doctor image" fill />
+                    <Image className="absolute shadow-xl object-cover object-center" src="/images/img-6.jpg" alt="doctor image" fill />
                 </div>
                 <div className="flex mb-3 gap-6 items-center">
                     <div className="flex items-center gap-1">
@@ -39,7 +39,7 @@ export default function RecentPostCard() {
             </div>
             <div className="mb-10">
                 <div className="relative w-full h-130 mb-6">
-                    <Image className="absolute shadow-xl object-cover object-center" src="/images/image-2.jpg" alt="doctor image" fill />
+                    <Image className="absolute shadow-xl object-cover object-center" src="/images/img-5.jpg" alt="doctor image" fill />
                 </div>
                 <div className="flex mb-3 gap-6 items-center">
                     <div className="flex items-center gap-1">
@@ -71,7 +71,7 @@ export default function RecentPostCard() {
             </div>
             <div className="mb-10">
                 <div className="relative w-full h-130 mb-6">
-                    <Image className="absolute shadow-xl object-cover object-center" src="/images/image-3.jpg" alt="doctor image" fill />
+                    <Image className="absolute shadow-xl object-cover object-center" src="/images/hero-2.jpg" alt="doctor image" fill />
                 </div>
                 <div className="flex mb-3 gap-6 items-center">
                     <div className="flex items-center gap-1">

@@ -6,7 +6,7 @@ export default function DoctorCard() {
     return (
         <div className="text-center rounded-sm overflow-hidden">
             <div className="relative mx-auto aspect-square">
-                <Image src="/images/doctor-4.jpg" alt="doctor image" fill className="absolute object-cover object-top" />
+                <Image src="/images/img-4.jpg" alt="doctor image" fill className="absolute object-cover object-top" />
             </div>
             <div className="pt-5 bg-brand-2">
                 <p className="text-lg tracking-widest text-brand-1 mb-2">Dr. Phillips</p>

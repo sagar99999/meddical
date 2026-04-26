@@ -12,12 +12,12 @@ import Form1 from "@/components/app/form-1";
 export default function Home() {
   return (
     <>
-      <div className="py-60 p-5 bg-[url(/images/image-1.jpg)] bg-cover">
+      <div className="py-60 p-5 bg-[url(/images/hero.jpg)] bg-cover">
         <div className="mx-auto max-w-340">
           <div className="max-w-150">
             <p className="uppercase text-brand text-lg font-bold tracking-wider mb-2">Caring for life</p>
             <h2 className="text-brand-1 text-5xl leading-15 font-semibold mb-8 tracking-wide">Leading the Way in Medical Excellence</h2>
-            <Link href="/services" className="bg-brand-2 hover:underline text text-brand-1 p-3 px-5 rounded-4xl tracking-wide items-center">Our Services
+            <Link href="/services" className="bg-brand-2 font-semibold hover:underline text text-brand-1 p-3 px-5 rounded-4xl tracking-wide items-center">Our Services
             </Link>
           </div>
         </div>
@@ -53,7 +53,7 @@ export default function Home() {
             <MoveRight className="size-5" />
           </div>
           <div className="relative h-100">
-            <Image className="absolute object-cover" src="/images/image-1.jpg" alt="doctor image" fill />
+            <Image className="absolute object-cover" src="/images/img-1.png" alt="doctor image" fill />
           </div>
           <div className="h-1.5 flex">
             <div className="bg-brand-2 h-full basis-[25%]" />
@@ -105,7 +105,7 @@ export default function Home() {
             <div className="shrink-0 basis-90">
               <div className="mb-8">
                 <div className="h-70 relative">
-                  <Image src="/images/image-1.jpg" alt="doctor image" fill className="absolute object-cover" />
+                  <Image src="/images/img-2.jpg" alt="doctor image" fill className="absolute object-cover" />
                 </div>
                 <div className="h-1.5 flex">
                   <div className="bg-brand-2 h-full basis-[25%]" />
@@ -115,7 +115,7 @@ export default function Home() {
               </div>
               <div>
                 <div className="h-70 relative">
-                  <Image src="/images/image-1.jpg" alt="doctor image" fill className="absolute object-cover" />
+                  <Image src="/images/img-3.jpg" alt="doctor image" fill className="absolute object-cover" />
                 </div>
                 <div className="h-1.5 flex">
                   <div className="bg-brand-2 h-full basis-[25%]" />
@@ -144,15 +144,16 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="p-5 mt-10 bg-[url(/images/image-1.jpg)] bg-cover bg- py-20">
+      <div className="p-5 mt-10 bg-[url(/images/hero-1.jpg)] bg-cover bg- py-20">
         <div className="max-w-340 mx-auto">
           <div className="flex items-center gap-4">
-            <div>
-              <h2 className="text-brand text-4xl tracking-wider mb-6">Book an Appointment</h2>
-              <p className="tracking-wide text-lg">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, quia at. Libero, dolores! Eligendi quas expedita quisquam exercitationem rem placeat recusandae. Voluptas numquam maxime dolor adipisci aspernatur quibusdam explicabo ipsa?
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, quia at. Libero, dolores! Eligendi quas expedita quisquam exercitationem rem placeat recusandae. s
-              </p>
+            <div className="grow">
+              <div className="max-w-150">
+                <h2 className="text-brand text-4xl tracking-wider mb-6">Book an Appointment</h2>
+                <p className="tracking-wide text-lg">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, quia at. Libero, dolores! Eligendi quas expedita quisquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, quia at. Libero, dolores! Eligendi quas expedita quisquam exercitationem rem placeat recusandae. s
+                </p>
+              </div>
             </div>
 
             <div className="shrink-0 basis-140">

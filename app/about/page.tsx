@@ -14,7 +14,7 @@ export default function AboutPage() {
                 <div className="max-w-340 mx-auto">
                     <div className="flex gap-8">
                         <div className='relative shrink-0 basis-130'>
-                            <Image src="/images/image-1.jpg" alt="doctor image" fill className='absolute object-cover' />
+                            <Image src="/images/img-6.jpg" alt="doctor image" fill className='absolute object-cover' />
                         </div>
                         <div>
                             <p className="uppercase text-brand text-lg font-bold tracking-widest mb-2">Welcome to Meddical</p>
