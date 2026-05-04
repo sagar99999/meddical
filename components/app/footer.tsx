@@ -1,6 +1,7 @@
 import Image from "next/image"
-import { Link, Send } from "lucide-react"
+import {  Send } from "lucide-react"
 import { FacebookIcon, InstagramIcon, LinkedInIcon } from "../icons/social"
+import Link from "next/link"
 
 export default function Footer() {
     return (
@@ -16,10 +17,10 @@ export default function Footer() {
                     <div>
                         <p className="font-semibold mb-6 tracking-wider text-lg">Important Links</p>
                         <ul>
-                            <li className="mb-3 hover:text-[#e0e0e0]"><a href="">Appointment</a></li>
-                            <li className="mb-3 hover:text-[#e0e0e0]"><a href="">Doctors</a></li>
-                            <li className="mb-3 hover:text-[#e0e0e0]"><a href="">Services</a></li>
-                            <li className="hover:text-[#e0e0e0]"><a href="">About Us</a></li>
+                            <li className="mb-3 hover:text-[#e0e0e0]"><Link href="/appointment">Appointment</Link></li>
+                            <li className="mb-3 hover:text-[#e0e0e0]"><Link href="/doctors">Doctors</Link></li>
+                            <li className="mb-3 hover:text-[#e0e0e0]"><Link href="/services">Services</Link></li>
+                            <li className="hover:text-[#e0e0e0]"><Link href="/about">About Us</Link></li>
                         </ul>
                     </div>
                     <div>

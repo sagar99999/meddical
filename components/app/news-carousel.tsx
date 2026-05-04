@@ -38,7 +38,7 @@ function CarouselSlide() {
     return <div className="grid mb-18 gap-6 grid-cols-2 grid-rows-2">
         <div className='flex gap-6 rounded-sm overflow-hidden'>
             <div className='size-45 relative'>
-                <Image className='size-50 object absolute object-cover' src="/images/img-5.jpg" alt="doctor" fill />
+                <Image className='size-50 object absolute object-cover' src="/images/img-5.jpg" alt="doctor" fill sizes="180px" />
             </div>
             <div>
                 <p className='text-brand mb-3 tracking-wide line-clamp-2'>Monday 05, September 2021 | By Author</p>
@@ -58,7 +58,7 @@ function CarouselSlide() {
         </div>
         <div className='flex gap-6 rounded-sm overflow-hidden'>
             <div className='size-45 relative'>
-                <Image className='size-50 object absolute object-cover' src="/images/img-5.jpg" alt="doctor" fill />
+                <Image className='size-50 object absolute object-cover' src="/images/img-5.jpg" alt="doctor" fill sizes="180px" />
             </div>
             <div>
                 <p className='text-brand mb-3 tracking-wide line-clamp-2'>Monday 05, September 2021 | By Author</p>
@@ -78,7 +78,7 @@ function CarouselSlide() {
         </div>
         <div className='flex gap-6 rounded-sm overflow-hidden'>
             <div className='size-45 relative'>
-                <Image className='size-50 object absolute object-cover' src="/images/img-5.jpg" alt="doctor" fill />
+                <Image className='size-50 object absolute object-cover' src="/images/img-5.jpg" alt="doctor" fill sizes="180px" />
             </div>
             <div>
                 <p className='text-brand mb-3 tracking-wide line-clamp-2'>Monday 05, September 2021 | By Author</p>
@@ -98,7 +98,7 @@ function CarouselSlide() {
         </div>
         <div className='flex gap-6 rounded-sm overflow-hidden'>
             <div className='size-45 relative'>
-                <Image className='size-50 object absolute object-cover' src="/images/img-5.jpg" alt="doctor" fill />
+                <Image className='size-50 object absolute object-cover' src="/images/img-5.jpg" alt="doctor" fill sizes="180px" />
             </div>
             <div>
                 <p className='text-brand mb-3 tracking-wide line-clamp-2'>Monday 05, September 2021 | By Author</p>

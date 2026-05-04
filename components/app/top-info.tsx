@@ -9,7 +9,7 @@ export default function TopInfo() {
                 <div className="flex gap-10">
                     <div className="flex items-center mr-auto">
                         <Link href="/">
-                            <Image src="/images/logo.png" alt="meddical logo" width={180} height={80} />
+                            <Image src="/images/logo.png" style={{height: "auto", width: "auto"}} alt="meddical logo" width={180} height={80} />
                         </Link>
                     </div>
                     <div className="flex gap-3 items-center">

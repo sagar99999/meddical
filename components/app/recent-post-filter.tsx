@@ -14,7 +14,7 @@ export default function RecentPostFilter() {
           <li>
             <div className="flex gap-3 group cursor-pointer">
               <div className="relative basis-20 shrink-0">
-                <Image src="/images/image-1.jpg" alt="doctor image" fill className="object-cover object-center rounded-sm" />
+                <Image src="/images/image-1.jpg" alt="doctor image" fill sizes="80px" className="object-cover object-center rounded-sm" />
               </div>
               <div>
                 <p className="text-brand mb-2 text-sm tracking-wide line-clamp">Monday 05, Semptember 2021</p>
@@ -27,7 +27,7 @@ export default function RecentPostFilter() {
           <li>
             <div className="flex gap-3 group cursor-pointer">
               <div className="relative basis-20 shrink-0">
-                <Image src="/images/image-1.jpg" alt="doctor image" fill className="object-cover object-center rounded-sm" />
+                <Image src="/images/image-1.jpg" alt="doctor image" fill sizes="80px" className="object-cover object-center rounded-sm" />
               </div>
               <div>
                 <p className="text-brand mb-2 text-sm tracking-wide line-clamp">Monday 05, Semptember 2021</p>
@@ -40,7 +40,7 @@ export default function RecentPostFilter() {
           <li>
             <div className="flex gap-3 group cursor-pointer">
               <div className="relative basis-20 shrink-0">
-                <Image src="/images/image-1.jpg" alt="doctor image" fill className="object-cover object-center rounded-sm" />
+                <Image src="/images/image-1.jpg" alt="doctor image" fill sizes="80px" className="object-cover object-center rounded-sm" />
               </div>
               <div>
                 <p className="text-brand mb-2 text-sm tracking-wide line-clamp">Monday 05, Semptember 2021</p>
@@ -53,7 +53,7 @@ export default function RecentPostFilter() {
           <li>
             <div className="flex gap-3 group cursor-pointer">
               <div className="relative basis-20 shrink-0">
-                <Image src="/images/image-1.jpg" alt="doctor image" fill className="object-cover object-center rounded-sm" />
+                <Image src="/images/image-1.jpg" alt="doctor image" fill sizes="80px" className="object-cover object-center rounded-sm" />
               </div>
               <div>
                 <p className="text-brand mb-2 text-sm tracking-wide line-clamp">Monday 05, Semptember 2021</p>

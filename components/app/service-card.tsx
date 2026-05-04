@@ -7,7 +7,7 @@ export default function ServiceCard() {
     return (
         <div className="border group rounded-sm overflow-hidden">
             <div className="aspect-square relative text-black">
-                <Image src="/images/img-2.jpg" alt="doctor image" fill className="absolute object-cover" />
+                <Image src="/images/img-2.jpg" alt="doctor image" fill sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" className="absolute object-cover" />
                 <BandAidIcon styleClass="transition-opacity duration-300 size-9 group-hover:opacity-0 box-content p-6 bg-brand-1 rounded-full text-white right-5 -bottom-10 absolute" />
                 <div className="transition-opacity duration-300 absolute group-hover:opacity-100 opacity-0 bg-[#17225681] size-full top-0 left-0" />
                 <BandAidIcon styleClass="transition-opacity duration-300 size-15 bg-transparent group-hover:opacity-100 opacity-0 box-content bg-brand-1 rounded-full text-white left-[50%] top-[50%] -translate-[50%] absolute" />
