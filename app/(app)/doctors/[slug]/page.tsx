@@ -27,7 +27,7 @@ export default async function DoctorPage({ params }: DoctorPageProps) {
                 <div>
                     <Image src={doc.image} alt={doc.name} className="rounded-sm shadow-lg mb-6" style={{ height: "auto", width: "100%" }} height={800} width={800} />
                     <div className="flex justify-between items-center mb-6">
-                        <h2 className="text-4xl text-brand-1 mr-3 capitalize">{doc.name}</h2>
+                        <h2 className="text-5xl text-brand-1 mr-3 capitalize">{doc.name}</h2>
                         <p className=" capitalize bg-green-700 text-white py-1 px-4 rounded-2xl shadow-lg">{doc.department}</p>
                     </div>
                     <p className="text-lg mb-6">{doc.description}</p>

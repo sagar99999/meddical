@@ -12,13 +12,15 @@ import Link from "next/link";
 import Form1 from "@/components/app/form-1";
 import dbConnect from '@/lib/mongoose'
 import Doctors from '@/models/doctors'
+import News from "@/models/news"
 
 export default async function Home() {
 
   await dbConnect()
   const docs = await Doctors.find().lean()
+  const news = await News.find().lean();
 
-  if (!docs) {
+  if (!docs || !news) {
     return <h1>Not found</h1>
   }
 
@@ -29,6 +31,16 @@ export default async function Home() {
     slug: doc.slug,
     image: doc.image,
     socialLinks: doc.socialLinks
+  }));
+
+  const filteredNews = news.map(singleNews => ({
+    _id: singleNews._id.toString(),
+    image: singleNews.image,
+    title: singleNews.title,
+    likes: singleNews.likes,
+    views: singleNews.views,
+    createAt: singleNews.createdAt,
+    slug: singleNews.slug
   }));
 
   return (
@@ -182,7 +194,7 @@ export default async function Home() {
       <div className="p-5 mt-2">
         <div className="max-w-340 mx-auto">
           <TitleSection title="Better information, better health" subtitle="News" />
-          <NewsCarousel />
+          <NewsCarousel news={filteredNews} />
         </div>
       </div>
       <ContactCtaSection sectionClassName="p-5 pb-15 mt-2" />

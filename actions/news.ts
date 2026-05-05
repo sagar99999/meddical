@@ -139,3 +139,28 @@ export async function deleteNewsById(id: string) {
     }
 }
 
+// server action | LIKE doctor profile
+export async function LikeNewsById(id: string) {
+    try {
+        await dbConnect()
+
+        // 1. ✅ Fetch if the doctor existss
+        const currentNews = await News.findById(id).lean();
+        if (!currentNews) {
+            return { success: false, error: "News not found" };
+        }
+
+        // increment the view count
+        await News.updateOne(
+            { slug: currentNews.slug },
+            { $inc: { likes: 1 } }
+        )
+
+        // 4. Revoke cached paths
+        revalidatePath(`/dashboard/news`);
+        revalidatePath(`/dashboard/news/${currentNews.slug}`);
+    } catch (error: any) {
+        return { success: false, error: error.message || "Failed | Like News" };
+    }
+}
+

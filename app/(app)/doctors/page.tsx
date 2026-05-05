@@ -6,14 +6,27 @@ import TitleSection from "@/components/app/title-section"
 import ContactCtaSection from "@/components/app/contact-cta-section"
 import Doctors from "@/models/doctors"
 import dbConnect from "@/lib/mongoose"
+import News from '@/models/news'
+
 
 export default async function DoctorsPage() {
     await dbConnect()
     const docs = await Doctors.find().lean()
+    const news = await News.find().lean()
 
-    if (!docs) {
-        return <h1>Not Found</h1>
+    if (!docs || !news) {
+        return <h1>Not found</h1>
     }
+
+    const filteredNews = news.map(singleNews => ({
+        _id: singleNews._id.toString(),
+        image: singleNews.image,
+        title: singleNews.title,
+        likes: singleNews.likes,
+        views: singleNews.views,
+        createAt: singleNews.createdAt,
+        slug: singleNews.slug
+    }));
 
     return (
         <>
@@ -31,7 +44,7 @@ export default async function DoctorsPage() {
             <div className="p-5 pt-15">
                 <div className="max-w-340 mx-auto">
                     <TitleSection title="Better information, better health" subtitle="News" />
-                    <NewsCarousel />
+                    <NewsCarousel news={filteredNews} />
                 </div>
             </div>
             <ContactCtaSection sectionClassName="p-5 pb-15" />

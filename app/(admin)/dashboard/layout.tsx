@@ -14,7 +14,6 @@ import {
     SidebarTrigger,
 } from "@/components/ui/sidebar"
 import { Metadata } from "next"
-import { Toaster } from "sonner"
 
 export const metadata: Metadata = {
     title: "Meddical | Dashboard"
@@ -50,13 +49,12 @@ export default function RootLayout({
                                     <BreadcrumbLink className="text-black font-medium" href="/dashboard">Dashboard</BreadcrumbLink>
                                 </BreadcrumbItem>
                                 <BreadcrumbSeparator className="hidden md:block" />
-                              
+
                             </BreadcrumbList>
                         </Breadcrumb>
                     </header>
                     <div className="px-5">
                         {children}
-                        <Toaster />
                     </div>
                 </SidebarInset>
             </SidebarProvider>

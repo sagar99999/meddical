@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Yeseva_One, Work_Sans } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "sonner"
 
 const workSans = Work_Sans({
   variable: "--font-work-sans",
@@ -30,6 +31,7 @@ export default function RootLayout({
     >
       <body suppressHydrationWarning>
         {children}
+        <Toaster />
       </body>
     </html>
   );

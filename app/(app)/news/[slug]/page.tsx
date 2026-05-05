@@ -20,6 +20,12 @@ export default async function SingleNewsPage({ params }: SingleNewsPageProps) {
         return <h1>Not found</h1>
     }
 
+    // increment the view count
+    await News.updateOne(
+        { slug },
+        { $inc: { views: 1 } }
+    )
+
     return (
         <>
             {/* BreadCrumb Section */}
