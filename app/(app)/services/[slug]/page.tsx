@@ -6,8 +6,36 @@ import FeatureBulletList from "@/components/app/feature-bullet-list"
 import { BandAidIcon } from "@/components/icons/app"
 import Image from "next/image"
 import { HeartPlus, Syringe } from "lucide-react"
+import dbConnect from "@/lib/mongoose"
+import Services from "@/models/services"
+import Doctors from '@/models/doctors'
 
-export default function ServicePage() {
+type ServicePageProps = {
+    params: Promise<{
+        slug: string;
+    }>
+}
+
+export default async function ServicePage({ params }: ServicePageProps) {
+
+    const { slug } = await params;
+    await dbConnect()
+    const service = await Services.findOne({ slug }).lean()
+    const docs = await Doctors.find().lean()
+
+    if (!docs || !service) {
+        return <h1>Not found</h1>
+    }
+
+    const filteredDocs = docs.map(doc => ({
+        _id: doc._id.toString(),
+        name: doc.name,
+        department: doc.department,
+        slug: doc.slug,
+        image: doc.image,
+        socialLinks: doc.socialLinks
+    }))
+
     return (
         <div>
             <BreadcrumbSection breadcrumb="Home / Services" title="Service Details" imageAlt="service details page" />
@@ -42,23 +70,19 @@ export default function ServicePage() {
                         </div>
                         <div className="grow">
                             <div className="h-120 mb-6 relative">
-                                <Image className="absolute object-cover" src="/images/image-1.jpg" alt="doctor image" fill sizes="(max-width: 1024px) 100vw, 70vw" />
+                                <Image className="absolute object-cover" src={service.image} alt={service.title} fill sizes="(max-width: 1024px) 100vw, 70vw" />
                             </div>
                             <div>
-                                <h2 className="text-4xl text-brand-1 font-extrabold tracking-wide leading-13 mb-8">A passion for putting patients first</h2>
+                                <h2 className="text-4xl text-brand-1 font-extrabold tracking-wide capitalize leading-13 mb-8">{service.title}</h2>
                                 <FeatureBulletList
                                     className="mb-6 gap-3"
-                                    items={[
-                                        "All Passion for Healing",
-                                        "5-Star Care",
-                                        "All our best",
-                                        "Believe in Us",
-                                        "Always Caring",
-                                        "A Legacy of Excellence",
-                                    ]}
+                                    items={service.highlights}
                                 />
-                                <p className="tracking-wide mb-6 text-lg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima hic, ipsum eum sapiente voluptate, voluptatem placeat mollitia natus corrupti modi commodi similique, magni recusandae omnis voluptatibus vero molestias nulla. Accusamus similique dignissimos, vero veniam eligendi mollitia. Modi, dolor omnis. Dicta dolorum eveniet vero aliquid non vel repellendus consequatur praesentium placeat.</p>
-                                <p className="tracking-wide text-lg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima hic, ipsum eum sapiente voluptate, voluptatem placeat mollitia natus corrupti modi commodi similique, magni recusandae omnis voluptatibus vero molestias nulla. Accusamus similique dignissimos, vero veniam eligendi mollitia. Modi, dolor omnis. Dicta dolorum eveniet vero aliquid non vel repellendus consequatur praesentium placeat.</p>
+                                <p className="tracking-wide mb-6 text-lg">
+                                    {
+                                        service.description
+                                    }
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -67,7 +91,7 @@ export default function ServicePage() {
             <div className="p-5 pt-15">
                 <div className="max-w-340 mx-auto">
                     <TitleSection title="Meet The" subtitle="Team Members" />
-                    <DoctorsCarousel />
+                    <DoctorsCarousel docs={filteredDocs} />
                 </div>
             </div>
             <ContactCtaSection sectionClassName="p-5 py-10 pb-15" />

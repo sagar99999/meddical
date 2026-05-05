@@ -10,8 +10,27 @@ import Image from "next/image";
 import { BandAidIcon } from "@/components/icons/app";
 import Link from "next/link";
 import Form1 from "@/components/app/form-1";
+import dbConnect from '@/lib/mongoose'
+import Doctors from '@/models/doctors'
 
-export default function Home() {
+export default async function Home() {
+
+  await dbConnect()
+  const docs = await Doctors.find().lean()
+
+  if (!docs) {
+    return <h1>Not found</h1>
+  }
+
+  const filteredDocs = docs.map(doc => ({
+    _id: doc._id.toString(),
+    name: doc.name,
+    department: doc.department,
+    slug: doc.slug,
+    image: doc.image,
+    socialLinks: doc.socialLinks
+  }));
+
   return (
     <>
       <div className="py-60 p-5 bg-[url(/images/hero.jpg)] bg-cover">
@@ -87,14 +106,12 @@ export default function Home() {
               <p className="text-4xl mb-8 font-semibold">A passion for for putting patients first.</p>
               <FeatureBulletList
                 className="mb-8"
-                items={[
-                  "A Passion for Healing",
-                  "5-Star Care",
-                  "All our Best",
-                  "Believe in Us",
-                  "A Legacy of Excellence",
-                  "Always Caring",
-                ]}
+                items={`A Passion for Healing,
+                  5-Star Care,
+                  All our Best,
+                  Believe in Us,
+                  A Legacy of Excellence,
+                  Always Caring`}
               />
               <p className="tracking-wide mb-8 text-lg">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima hic, ipsum eum sapiente voluptate, voluptatem placeat mollitia natus corrupti modi commodi similique, magni recusandae omnis voluptatibus vero molestias nulla. Accusamus similique dignissimos, vero veniam eligendi mollitia. Modi, dolor omnis. Dicta dolorum eveniet vero aliquid non vel repellendus consequatur praesentium placeat.
@@ -159,7 +176,7 @@ export default function Home() {
       <div className="p-5 pt-10">
         <div className="max-w-340 mx-auto">
           <TitleSection title="Trusted Care" subtitle="Our Doctors" />
-          <DoctorsCarousel />
+          <DoctorsCarousel docs={filteredDocs} />
         </div>
       </div>
       <div className="p-5 mt-2">

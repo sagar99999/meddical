@@ -1,5 +1,3 @@
-
-
 export default function Form1() {
     return (
         <form className='bg-brand-1 rounded-sm overflow-hidden text-white'>

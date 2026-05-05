@@ -10,7 +10,24 @@ import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import DoctorCard from './doctor-card';
 
-export default function DoctorsCarousel() {
+
+type SocialLinks = {
+    facebook: string;
+    linkedin: string;
+    instagram: string;
+}
+
+type Doctor = {
+    _id: string;
+    department: string;
+    image: string;
+    name: string;
+    slug: string;
+    socialLinks: SocialLinks;
+}
+
+export default function DoctorsCarousel({ docs }: { docs: Doctor[] }) {
+
     const pagination = {
         clickable: true,
         renderBullet: function (index: number, className: string) {
@@ -18,26 +35,29 @@ export default function DoctorsCarousel() {
         },
     };
     return <Swiper
+        slidesPerView={3}
+        spaceBetween={16}
         pagination={pagination}
         modules={[Pagination]}
         className="mySwiper"
     >
-        <SwiperSlide>
-            <CarouselSlide />
-        </SwiperSlide>
-        <SwiperSlide>
-            <CarouselSlide />
-        </SwiperSlide>
+
+        {
+            docs.length && docs.map(doc => (
+                <SwiperSlide key={doc._id}>
+                    <CarouselSlide _id={doc._id} socialLinks={doc.socialLinks} name={doc.name} department={doc.department} slug={doc.slug} image={doc.image} />
+                </SwiperSlide>
+            ))
+        }
+
     </Swiper>
 }
 
 
 
 // indivisual carousel slide
-function CarouselSlide() {
-    return <div className="grid gap-8 grid-cols-3 mb-18">
-        <DoctorCard />
-        <DoctorCard />
-        <DoctorCard />
+function CarouselSlide({ _id, name, department, slug, image, socialLinks }: Doctor) {
+    return <div >
+        <DoctorCard department={department} image={image} name={name} slug={slug} socialLinks={{ facebook: socialLinks.facebook, linkedin: socialLinks.linkedin, instagram: socialLinks.instagram }} />
     </div>
 }
