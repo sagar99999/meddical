@@ -7,6 +7,23 @@ import { formSchema } from "@/components/dashboard/doctor-form"
 import * as z from "zod"
 import { generateSlug } from "@/lib/utils";
 
+//server action | getDoctors
+export async function getDoctorsName() {
+    try {
+        await dbConnect()
+
+        const docs = await Doctors.find().lean()
+
+        const filteredDocs = docs.map(doc => ({
+            name: doc.name
+        }))
+        
+        return { success: true, error: false, data: filteredDocs };
+    } catch (error: any) {
+        return { success: false, error: error.message || "Failed | Get Doctor" };
+    }
+}
+
 // server action | CREATE doctor profile
 export async function createDoctor(payload: z.infer<typeof formSchema>, formData?: FormData | null) {
 
