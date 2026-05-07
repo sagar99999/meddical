@@ -41,7 +41,6 @@ export default function DoctorsCarousel({ docs }: { docs: Doctor[] }) {
         modules={[Pagination]}
         className="mySwiper"
     >
-
         {
             docs.length && docs.map(doc => (
                 <SwiperSlide key={doc._id}>
@@ -49,7 +48,6 @@ export default function DoctorsCarousel({ docs }: { docs: Doctor[] }) {
                 </SwiperSlide>
             ))
         }
-
     </Swiper>
 }
 

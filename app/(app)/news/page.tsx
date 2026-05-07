@@ -3,7 +3,15 @@ import RecentPostFilter from "@/components/app/recent-post-filter";
 import RecentPostCard from "@/components/app/recent-post-card";
 import ContactCtaSection from "@/components/app/contact-cta-section";
 
-export default function NewsPage() {
+type NewsPageProps = {
+    searchParams: Promise<{
+        page: number
+    }>
+}
+
+export default async function NewsPage({ searchParams }: NewsPageProps) {
+    const { page } = await searchParams;
+
     return (
         <>
             {/* BreadCrumb Section */}
@@ -11,7 +19,7 @@ export default function NewsPage() {
 
             <div className="p-5 pt-15">
                 <div className="max-w-340 flex gap-6 mx-auto">
-                    <RecentPostCard />
+                    <RecentPostCard page={page || 1} />
                     {/* Right Bar */}
                     <RecentPostFilter />
                 </div>

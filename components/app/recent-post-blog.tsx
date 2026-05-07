@@ -5,10 +5,12 @@ import Link from "next/link"
 type RecentPostBlogProps = {
     image: string;
     description: string;
-    title: string
+    title: string,
+    previousSlug: string;
+    nextSlug: string
 }
 
-export default function RecentPostBlog({ image, description, title }: RecentPostBlogProps) {
+export default function RecentPostBlog({ image, description, title, previousSlug, nextSlug }: RecentPostBlogProps) {
     return (
         <div className="grow">
             <div className="mb-10">
@@ -20,14 +22,18 @@ export default function RecentPostBlog({ image, description, title }: RecentPost
                 </p>
             </div>
             <div className="flex justify-between items-center">
-                <Link href="/news/one" className="bg-brand-2 mr-3 text text-brand-1 p-3 px-5 rounded-4xl tracking-wide inline-flex gap-2 hover:underline items-center">
-                    <MoveLeft className="size-5 text-brand-1" />
-                    Previous Article</Link>
-
-                <Link href="/news/one" className="bg-brand-2 text text-brand-1 p-3 px-5 rounded-4xl tracking-wide inline-flex gap-2 hover:underline items-center">
-                    Next Article
-                    <MoveRight className="size-5 text-brand-1" />
-                </Link>
+                {
+                    previousSlug && <Link href={`/news/${previousSlug}`} className="bg-brand-2 mr-3 text text-brand-1 p-3 px-5 rounded-4xl tracking-wide inline-flex gap-2 hover:underline items-center">
+                        <MoveLeft className="size-5 text-brand-1" />
+                        Previous Article
+                    </Link>
+                }
+                {
+                    nextSlug && <Link href={`/news/${nextSlug}`} className="bg-brand-2 ml-auto text text-brand-1 p-3 px-5 rounded-4xl tracking-wide inline-flex gap-2 hover:underline items-center">
+                        Next Article
+                        <MoveRight className="size-5 text-brand-1" />
+                    </Link>
+                }
             </div>
         </div>
     )

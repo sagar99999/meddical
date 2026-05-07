@@ -12,13 +12,25 @@ type SingleNewsPageProps = {
 }
 
 export default async function SingleNewsPage({ params }: SingleNewsPageProps) {
-    const { slug } = await params;
     await dbConnect()
-    const singleNews = await News.findOne({ slug }).lean()
+    const { slug } = await params;
+    const currentNews = await News.findOne({ slug }).lean()
 
-    if (!singleNews) {
+    if (!currentNews) {
         return <h1>Not found</h1>
     }
+
+    const prevNews = await News.findOne({
+        createdAt: { $gt: currentNews?.createdAt }
+    })
+        .sort({ createdAt: -1 })
+        .select('slug');
+
+    const nextNews = await News.findOne({
+        createdAt: { $lt: currentNews?.createdAt }
+    })
+        .sort({ createdAt: -1 })
+        .select('slug');
 
     // increment the view count
     await News.updateOne(
@@ -33,7 +45,7 @@ export default async function SingleNewsPage({ params }: SingleNewsPageProps) {
 
             <div className="p-5 pt-15">
                 <div className="max-w-340 flex gap-6 mx-auto">
-                    <RecentPostBlog description={singleNews.description} title={singleNews.title} image={singleNews.image} />
+                    <RecentPostBlog previousSlug={prevNews?.slug || ""} nextSlug={nextNews?.slug || ""} description={currentNews.description} title={currentNews.title} image={currentNews.image} />
                     {/* Right Bar */}
                     <RecentPostFilter />
                 </div>

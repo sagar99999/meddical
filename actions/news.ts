@@ -164,3 +164,36 @@ export async function LikeNewsById(id: string) {
     }
 }
 
+// server action | Get total number of news pages
+export async function getTotalNewsPages() {
+    try {
+        await dbConnect()
+
+        const totalNews = await News.countDocuments()
+
+        // 3 news per page limit
+        const totalPages = Math.ceil(totalNews / 3)
+        return { success: true, error: false, data: totalPages };
+
+    } catch (error: any) {
+        return { success: false, error: error.message || "Failed | Get News page number" };
+    }
+}
+
+// server action | Get total number of news pages
+export async function getRecentNews(currentPage: number) {
+    try {
+        await dbConnect()
+        const limit = 3;
+        const skip = (currentPage - 1) * limit
+
+        const news = await News.find().sort({ createdAt: -1 }) // newest first
+            .skip(skip)
+            .limit(limit)
+            .lean()
+
+        return { success: true, error: false, data: news }
+    } catch (error: any) {
+        return { success: false, error: error.message || "Failed | Get recent news" };
+    }
+}

@@ -16,7 +16,7 @@ type DoctorCardProps = {
 
 export default function DoctorCard({ image,name, socialLinks, slug, department }: DoctorCardProps) {
     return (
-        <div className="text-center rounded-sm overflow-hidden">
+        <div className="text-center mb-20 rounded-sm overflow-hidden">
             <div className="relative mx-auto aspect-square">
                 <Image src={image} alt="doctor image" fill sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" className="absolute object-cover object-top" />
             </div>
