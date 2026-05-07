@@ -23,7 +23,7 @@ export default async function SingleNewsPage({ params }: SingleNewsPageProps) {
     const prevNews = await News.findOne({
         createdAt: { $gt: currentNews?.createdAt }
     })
-        .sort({ createdAt: -1 })
+        .sort({ createdAt: 1 })
         .select('slug');
 
     const nextNews = await News.findOne({
