@@ -25,7 +25,7 @@ export default async function DashboardServices() {
         </div>
 
         {
-            services.length > 1 && services.map(singleService => <ServicesTile
+            services.length > 0 && services.map(singleService => <ServicesTile
                 category={singleService.category} image={singleService.image} slug={singleService.slug}
                 title={singleService.title} key={singleService._id.toString()} description={singleService.description}
             />)

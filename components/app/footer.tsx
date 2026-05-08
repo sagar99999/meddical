@@ -1,7 +1,8 @@
 import Image from "next/image"
-import {  Send } from "lucide-react"
+import { Send } from "lucide-react"
 import { FacebookIcon, InstagramIcon, LinkedInIcon } from "../icons/social"
 import Link from "next/link"
+import NewsletterForm from "./newsletter-form"
 
 export default function Footer() {
     return (
@@ -33,10 +34,7 @@ export default function Footer() {
                     </div>
                     <div>
                         <p className="font-semibold mb-6 tracking-wider text-lg">Newsletter</p>
-                        <div className="relative text-black">
-                            <input className="ps-5 pe-10 py-3 bg-brand-2 rounded-sm" type="email" placeholder='Enter your email address' />
-                            <Send className="size-5 absolute right-4 top-3.5" />
-                        </div>
+                        <NewsletterForm />
                     </div>
                 </div>
 

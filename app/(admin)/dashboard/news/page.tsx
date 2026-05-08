@@ -24,7 +24,7 @@ export default async function DashboardNews() {
       </Button>
     </div>
     {
-      news.length > 1 && news.map(singleNews => <NewsTile slug={singleNews.slug}
+      news.length > 0 && news.map(singleNews => <NewsTile slug={singleNews.slug}
         category={singleNews.category} title={singleNews.title}
         image={singleNews.image} key={String(singleNews._id)}
         author={singleNews.author} />)

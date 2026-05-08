@@ -7,6 +7,7 @@ export interface IContact {
     message: string;
     createdAt: Date;
     updatedAt: Date;
+    slug: string;
 }
 
 const ContactSchema = new Schema<IContact>({
@@ -14,6 +15,7 @@ const ContactSchema = new Schema<IContact>({
     email: { type: String, required: true },
     subject: { type: String, required: true },
     message: { type: String, required: true },
+    slug: { type: String, required: true, unique: true, lowercase: true, trim: true },
 },
     {
         timestamps: true

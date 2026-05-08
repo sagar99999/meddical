@@ -24,7 +24,7 @@ export default async function DashboardDoctors() {
             </Button>
         </div>
         {
-            docs.length > 1 && docs.map(singleDoc => <DoctorsTile description={singleDoc.description} key={singleDoc._id.toString()} name={singleDoc.name} department={singleDoc.department} image={singleDoc.image} slug={singleDoc.slug}
+            docs.length > 0 && docs.map(singleDoc => <DoctorsTile description={singleDoc.description} key={singleDoc._id.toString()} name={singleDoc.name} department={singleDoc.department} image={singleDoc.image} slug={singleDoc.slug}
             />)
         }
     </div>

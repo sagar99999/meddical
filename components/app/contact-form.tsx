@@ -16,8 +16,6 @@ const ContactFormSchema = z.object({
 export type ContactFormSchemaType = z.infer<typeof ContactFormSchema>;
 
 export default function ContactForm() {
-
-
     const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<ContactFormSchemaType>({
         resolver: zodResolver(ContactFormSchema as any)
     })

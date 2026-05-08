@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Stethoscope, Newspaper, BriefcaseBusiness } from 'lucide-react';
+import { Stethoscope, Newspaper, BriefcaseBusiness, Phone, Calendar } from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
@@ -24,6 +24,16 @@ const data = {
       title: "Dashboard",
       url: "/dashboard",
       items: [
+        {
+          title: "Appointments",
+          url: "/dashboard/appointments",
+          icon: <Calendar className="text-brand-1!" />
+        },
+        {
+          title: "Contacts",
+          url: "/dashboard/contacts",
+          icon: <Phone className="text-brand-1!" />
+        },
         {
           title: "Doctors",
           url: "/dashboard/doctors",
@@ -79,7 +89,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     {item.items.map((item) => (
                       <SidebarMenuSubItem key={item.title}>
                         <SidebarMenuSubButton asChild isActive={false}>
-                          <Link className="tracking-tighter mb-3.5 block font-medium text-[1rem]!" href={item.url}>
+                          <Link className="tracking-tighter mb-2 block font-medium text-[1rem]!" href={item.url}>
                             {item.icon}
                             {item.title}
                           </Link>
