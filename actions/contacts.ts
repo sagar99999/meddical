@@ -11,7 +11,7 @@ export default async function createContacts(payload: ContactFormSchemaType) {
     try {
         await dbConnect()
 
-        // 2.✅ Generate new slug based on name
+        // ✅ Generate new slug based on name
         const slug = generateSlug(payload.name)
 
         await Contacts.create({

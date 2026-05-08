@@ -21,6 +21,6 @@ export async function createAppointment(payload: AppointmentFormSchemaData) {
         revalidatePath("/dashboard/appointments")
         return { success: true, error: false };
     } catch (error: any) {
-        return { success: false, error: error.message || "Failed | Get Doctor" };
+        return { success: false, error: error.message || "Failed | Create Appointment" };
     }
 }
