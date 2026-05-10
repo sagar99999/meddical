@@ -17,7 +17,7 @@ type NewsLetterFormData = z.infer<typeof NewsLetterFormSchema>
 
 export default function NewsletterForm() {
 
-    const { register, reset, handleSubmit, formState: { isLoading, errors } } = useForm<NewsLetterFormData>({
+    const { register, reset, handleSubmit, formState: { isSubmitting, errors } } = useForm<NewsLetterFormData>({
         resolver: zodResolver(NewsLetterFormSchema as any)
     })
 
@@ -43,7 +43,7 @@ export default function NewsletterForm() {
             <form onSubmit={handleSubmit(submitHandler)}>
                 <div>
                     <input {...register("email")} className="ps-5 pe-10 py-3 bg-brand-2 rounded-sm" type="email" placeholder='Enter your email address' />
-                    <button className="cursor-pointer" type="submit">
+                    <button disabled={isSubmitting} className="cursor-pointer" type="submit">
                         <Send className="size-5 absolute right-4 top-3.5" />
                     </button>
                 </div>

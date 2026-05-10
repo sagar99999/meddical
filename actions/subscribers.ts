@@ -12,9 +12,8 @@ export async function createSubscriber(email: string) {
         const existingSubscriber = await Subscribers.findOne({ email })
 
         if (existingSubscriber) {
-            return { success: true, error: false, msg: "You're already subsribed" };
+            return { success: true, error: false, msg: "You're already subscribed" };
         }
-
         await Subscribers.create({ email })
         revalidatePath("/dashboard/subscribers")
         return { success: true, error: false };

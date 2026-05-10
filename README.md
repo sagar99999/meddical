@@ -167,4 +167,4 @@ For other platforms, run `pnpm build` and then `pnpm start` to serve the product
 
 ---
 
-© 2021 Meddical. All Rights Reserved by PNTEC-LTD.
+© 2021-2026 Meddical. All Rights Reserved by PNTEC-LTD.
