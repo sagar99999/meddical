@@ -27,7 +27,6 @@ export default function RootLayout({
 }>) {
     return (
         <TooltipProvider>
-
             <SidebarProvider
                 style={
                     {
