@@ -5,12 +5,13 @@ import ContactCtaSection from "@/components/app/contact-cta-section";
 
 type NewsPageProps = {
     searchParams: Promise<{
-        page: number
+        page: number;
+        category: string;
     }>
 }
 
 export default async function NewsPage({ searchParams }: NewsPageProps) {
-    const { page } = await searchParams;
+    const params = await searchParams;
 
     return (
         <>
@@ -19,9 +20,8 @@ export default async function NewsPage({ searchParams }: NewsPageProps) {
 
             <div className="p-5 pt-15">
                 <div className="max-w-340 flex gap-6 mx-auto">
-                    <RecentPostCard page={page || 1} />
-                    {/* Right Bar */}
-                    <RecentPostFilter />
+                    <RecentPostCard category={params.category} page={Number(params.page) || 1} />                    {/* Right Bar */}
+                    <RecentPostFilter searchParams={params} />
                 </div>
             </div>
 

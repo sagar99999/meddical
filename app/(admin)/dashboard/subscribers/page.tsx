@@ -7,8 +7,8 @@ export default async function DashboardSubscribers() {
 
     const subscribers = await Subscribers.find().sort({ createdAt: -1 }).lean()
 
-    if (!subscribers) {
-        return <p>No page found</p>
+    if (subscribers.length < 1) {
+        return null
     }
 
     return <div className="grid grid-cols-1 gap-4">

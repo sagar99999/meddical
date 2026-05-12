@@ -11,7 +11,7 @@ export default async function DashboardDoctors() {
     const docs = await Doctors.find()
 
     if (!docs) {
-        return <p>No page found</p>
+        return null
     }
 
     return <div className="grid grid-cols-1 gap-4">

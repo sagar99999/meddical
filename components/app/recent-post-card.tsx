@@ -2,30 +2,43 @@ import Image from "next/image"
 import { Calendar, User, Eye, MoveRight, MoveLeft } from "lucide-react"
 import Link from "next/link"
 import { format } from "date-fns"
-import dbConnect from "@/lib/mongoose"
 import LikeBtn from "./like-btn"
-import { getTotalNewsPages } from "@/actions/news"
-import { getRecentNews } from "@/actions/news"
+import { getTotalNewsPages, getRecentNews } from "@/actions/news"
 
 type RecentPostCardProps = {
-    page: number
+    page: number;
+    category: string
 }
 
-export default async function RecentPostCard({ page }: RecentPostCardProps) {
+export default async function RecentPostCard({ page, category }: RecentPostCardProps) {
 
-    await dbConnect()
-    const pages = await getTotalNewsPages()
+    const getPageLink = (newPage: number | null) => {
+        const params = new URLSearchParams();
+
+        if (category) {
+            params.set('category', category);
+        }
+
+        if (newPage) {
+            params.set('page', String(newPage));
+        }
+
+        return `/news?${params.toString()}`;
+    };
+    const pages = await getTotalNewsPages(category)
     const currentPage = Number(page || 1)
-    const recentNews = await getRecentNews(Number(currentPage || 1))
+    const recentNews = await getRecentNews(Number(currentPage || 1), category)
 
-    if (!recentNews.data || !pages.success) {
+    if (!recentNews.data || !pages.success || pages.data == null) {
         return <h1>Not Found</h1>
     }
+
+    const totalPages = pages.data
 
     return (
         <div className="grow">
             {
-                recentNews.data.length && recentNews.data.map(singleNews => (
+                recentNews.data.map(singleNews => (
                     <div key={singleNews._id.toString()} className="mb-10">
                         <div className="relative w-full h-130 mb-6">
                             <Image className="absolute shadow-xl object-cover object-center" src={singleNews.image} alt={singleNews.title} fill sizes="(max-width: 1024px) 100vw, 900px" />
@@ -33,7 +46,7 @@ export default async function RecentPostCard({ page }: RecentPostCardProps) {
                         <div className="flex mb-3 gap-6 items-center">
                             <div className="flex items-center gap-1">
                                 <Calendar className="size-5" />
-                                <p className="tracking-wide">{format(singleNews.createdAt, 'eeee dd, MMMM yyyy')}</p>
+                                <p className="tracking-wide">{format(new Date(singleNews.createdAt), "PPP")}</p>
                             </div>
                             <div className="flex items-center gap-1">
                                 <User className="size-5 text-brand" />
@@ -61,23 +74,24 @@ export default async function RecentPostCard({ page }: RecentPostCardProps) {
             }
             <div className="flex items-center">
                 {
-                    currentPage > 1 && <Link className="flex hover:underline text-brand items-center tracking-wide gap-2" href={`/news?page=${Number(currentPage - 1)}`}>
-                        <MoveLeft className="size-5 text-brand-1" />
-                        Previous Page</Link>
+                    currentPage > 1 && <Link className="flex hover:underline text-brand items-center tracking-wide gap-2" href={getPageLink(currentPage - 1)}>
+                        <MoveLeft className="size-5" />
+                        Previous Page
+                    </Link>
                 }
                 <div className="grow">
                     <ul className="flex justify-center items-center">
                         {
-                            Array.from({ length: pages.data! }, (_, ind) => <li key={ind} className="flex">
-                                <Link className="text-brand-1" href={`/news${ind > 0 ? '?page=' + Number(ind + 1) : ""}`}>{ind + 1}</Link>
-                                {ind + 1 < pages.data! && <span className="mx-2">-</span>}
+                            Array.from({ length: totalPages }, (_, ind) => <li key={ind} className="flex">
+                                <Link className="text-brand-1" href={getPageLink(ind + 1)}>{ind + 1}</Link>
+                                {ind + 1 < totalPages && <span className="mx-2">-</span>}
                             </li>
                             )
                         }
                     </ul>
                 </div>
                 {
-                    currentPage < pages.data! && <Link className="flex hover:underline text-brand items-center tracking-wide gap-2" href={`/news?page=${Number(currentPage + 1)}`}>
+                    currentPage < totalPages && <Link className="flex hover:underline text-brand items-center tracking-wide gap-2" href={getPageLink(currentPage + 1)}>
                         Next Page
                         <MoveRight className="size-5 text-brand-1" />
                     </Link>

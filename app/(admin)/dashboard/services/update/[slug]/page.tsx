@@ -17,7 +17,7 @@ export default async function DashboardSingleNews({ params }: DashboardSingleDoc
     const service = await Services.findOne({ slug }).lean();
 
     if (!service) {
-        return <p>Not Found</p>
+        return null
     }
 
     const { title, category, image, description, highlights, _id } = service;

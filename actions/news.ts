@@ -93,9 +93,8 @@ export async function updateNewsById(id: string, payload: z.infer<typeof formSch
                     ...payload,
                     slug: newSlug || currentNews.slug,
                     image: uploadResponse?.url || currentNews.image,
-                    fileId: uploadResponse?.fileId || ""
-                }
-            },
+                    fileId: uploadResponse?.fileId || currentNews.fileId
+                }            },
             {
                 new: true,
                 runValidators: true,
@@ -134,6 +133,7 @@ export async function deleteNewsById(id: string) {
         // 4. Revoke cached paths
         revalidatePath(`/dashboard/news`);
         revalidatePath(`/dashboard/news/${currentNews.slug}`);
+        return { success: true, error: false };
     } catch (error: any) {
         return { success: false, error: error.message || "Failed | Delete News" };
     }
@@ -159,17 +159,21 @@ export async function LikeNewsById(id: string) {
         // 4. Revoke cached paths
         revalidatePath(`/dashboard/news`);
         revalidatePath(`/dashboard/news/${currentNews.slug}`);
+        return { success: true, error: false };
     } catch (error: any) {
         return { success: false, error: error.message || "Failed | Like News" };
     }
 }
 
 // server action | Get total number of news pages
-export async function getTotalNewsPages() {
+export async function getTotalNewsPages(currentCategory?: string) {
     try {
         await dbConnect()
+        // Build filter object
+        const filter: any = {};
+        if (currentCategory) filter.category = currentCategory
 
-        const totalNews = await News.countDocuments()
+        const totalNews = await News.countDocuments(filter.category ? filter : {})
 
         // 3 news per page limit
         const totalPages = Math.ceil(totalNews / 3)
@@ -181,13 +185,17 @@ export async function getTotalNewsPages() {
 }
 
 // server action | Get total number of news pages
-export async function getRecentNews(currentPage: number) {
+export async function getRecentNews(currentPage: number, currentCategory?: string) {
     try {
         await dbConnect()
         const limit = 3;
         const skip = (currentPage - 1) * limit
 
-        const news = await News.find().sort({ createdAt: -1 }) // newest first
+        // Build filter object
+        const filter: any = {};
+        if (currentCategory) filter.category = currentCategory
+
+        const news = await News.find(filter.category ? filter : {}).sort({ createdAt: -1 }) // newest first
             .skip(skip)
             .limit(limit)
             .lean()

@@ -47,7 +47,7 @@ export default async function SingleNewsPage({ params }: SingleNewsPageProps) {
                 <div className="max-w-340 flex gap-6 mx-auto">
                     <RecentPostBlog previousSlug={prevNews?.slug || ""} nextSlug={nextNews?.slug || ""} description={currentNews.description} title={currentNews.title} image={currentNews.image} />
                     {/* Right Bar */}
-                    <RecentPostFilter />
+                    <RecentPostFilter searchParams={({ page: null, category: null })} />
                 </div>
             </div>
 

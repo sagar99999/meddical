@@ -24,3 +24,22 @@ export async function createAppointment(payload: AppointmentFormSchemaData) {
         return { success: false, error: error.message || "Failed | Create Appointment" };
     }
 }
+
+//server action | delete appointment
+export async function deleteAppointment(email: string) {
+    try {
+        await dbConnect()
+
+        const existingAppointment = await Appointments.findOne({ email })
+
+        if (!existingAppointment) {
+            return { success: false, error: true };
+        }
+
+        await Appointments.findOneAndDelete({ email })
+        revalidatePath("/dashboard/appointments")
+        return { success: true, error: false };
+    } catch (error: any) {
+        return { success: false, error: error.message || "Failed | Delete Appointment" };
+    }
+}

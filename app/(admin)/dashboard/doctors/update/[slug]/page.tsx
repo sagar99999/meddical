@@ -17,7 +17,7 @@ export default async function DashboardSingleDoctor({ params }: DashboardSingleD
     const doctor = await Doctors.findOne({ slug }).lean(); // lean() returns plain object
 
     if (!doctor) {
-        return <p>Not Found</p>
+        return null
     }
 
     const { name, department, description, socialLinks, image, _id } = doctor;

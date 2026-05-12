@@ -17,7 +17,7 @@ export default function SubscriberDeleteBtn({ email }: { email: string }) {
                 toast.success("❌ Subscriber deletion failed")
             }
         }} className="cursor-pointer ml-3" aria-label={`Delete subscriber ${email}`}>
-            <Trash2 className="size-4" />
+            <Trash2 className="size-4 text-red-700" />
         </button>
     )
 }

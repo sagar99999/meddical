@@ -8,7 +8,7 @@ export default async function DashboardServices() {
     const contacts = await Contacts.find().sort({ createdAt: -1 }).lean()
 
     if (!contacts) {
-        return <p>No page found</p>
+        return null
     }
 
     return <div className="grid grid-cols-1 gap-4">

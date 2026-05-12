@@ -13,7 +13,7 @@ type AppointmentsTileProps = {
 
 export default function AppointmentsTile({ name, email, slug, phone, time, date, department }: AppointmentsTileProps) {
     return (
-        <Link href={`#`}>
+        <Link href={`/dashboard/appointments/${slug}`}>
             <div className="bg-[#f9f9f9] rounded-md overflow-hidden text-sm tracking-tight">
                 <div className="flex gap-2">
                     <div className="p-2">
