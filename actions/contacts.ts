@@ -25,3 +25,22 @@ export default async function createContacts(payload: ContactFormSchemaType) {
         return { success: false, error: error.message || "Failed | Create Contact" };
     }
 }
+
+//server action | delete contact
+export async function deleteContact(id: string) {
+    try {
+        await dbConnect()
+
+        const existingContact = await Contacts.findById(id)
+
+        if (!existingContact) {
+            return { success: false, error: true };
+        }
+
+        await Contacts.findOneAndDelete({ _id: id })
+        revalidatePath("/dashboard/contacts")
+        return { success: true, error: false };
+    } catch (error: any) {
+        return { success: false, error: error.message || "Failed | Delete Contact" };
+    }
+}

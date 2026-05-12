@@ -21,3 +21,22 @@ export async function createSubscriber(email: string) {
         return { success: false, error: error.message || "Failed | Create Subscriber" };
     }
 }
+
+// DELETE Subscriber
+export async function deleteSubscriber(email: string) {
+    try {
+        await dbConnect()
+
+        const existingSubscriber = await Subscribers.findOne({ email })
+
+        if (!existingSubscriber) {
+            return { success: false, error: true };
+        }
+
+        await Subscribers.findOneAndDelete({ email })
+        revalidatePath("/dashboard/subscribers")
+        return { success: true, error: false };
+    } catch (error: any) {
+        return { success: false, error: error.message || "Failed | Delete Subscriber" };
+    }
+}

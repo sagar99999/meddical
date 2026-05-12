@@ -12,7 +12,7 @@ type ContactsTileProps = {
 
 export default function ContactsTile({ name, email, slug, subject, createdAt }: ContactsTileProps) {
     return (
-        <Link href={`#`}>
+        <Link href={`/dashboard/contacts/${slug}`}>
             <div className="bg-[#f9f9f9] rounded-md overflow-hidden text-sm tracking-tight">
                 <div className="flex gap-2">
                     <div className="p-2">

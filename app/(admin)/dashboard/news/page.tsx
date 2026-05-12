@@ -11,7 +11,7 @@ export default async function DashboardNews() {
   const news = await News.find()
 
   if (!news) {
-    return <p>No page found</p>
+    return null
   }
 
   return <div className="grid grid-cols-1 gap-4">

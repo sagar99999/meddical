@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Stethoscope, Newspaper, BriefcaseBusiness, Phone, Calendar } from 'lucide-react';
+import { Stethoscope, Newspaper, BriefcaseBusiness, Phone, Calendar, User } from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
@@ -33,6 +33,11 @@ const data = {
           title: "Contacts",
           url: "/dashboard/contacts",
           icon: <Phone className="text-brand-1!" />
+        },
+        {
+          title: "Subscribers",
+          url: "/dashboard/subscribers",
+          icon: <User className="text-brand-1!" />
         },
         {
           title: "Doctors",

@@ -11,7 +11,7 @@ export default async function DashboardServices() {
     const services = await Services.find()
 
     if (!services) {
-        return <p>No page found</p>
+        return null
     }
 
     return <div className="grid grid-cols-1 gap-4">
@@ -30,6 +30,5 @@ export default async function DashboardServices() {
                 title={singleService.title} key={singleService._id.toString()} description={singleService.description}
             />)
         }
-
     </div>
 }
