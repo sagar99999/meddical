@@ -41,6 +41,7 @@ export async function createService(payload: z.infer<typeof formSchema>, formDat
 
         // 4.✅ Revoke cached paths
         revalidatePath(`/dashboard/services`);
+        revalidatePath(`/services`);
         return { success: true, error: false };
     } catch (error: any) {
         return { success: false, error: error.message || "Failed | Create Service" };
@@ -106,6 +107,8 @@ export async function updateServiceById(id: string, payload: z.infer<typeof form
         // 6.✅ Revoke cached paths
         revalidatePath(`/dashboard/services`);
         revalidatePath(`/dashboard/services/${payload.slug}`);
+        revalidatePath(`/services`);
+        revalidatePath(`/services/${payload.slug}`);
         return { success: true, error: false };
     } catch (error: any) {
         return { success: false, error: error.message || "Failed | Service Doctor" };
@@ -134,6 +137,8 @@ export async function deleteServiceById(id: string) {
         // 4. Revoke cached paths
         revalidatePath(`/dashboard/services`);
         revalidatePath(`/dashboard/services/${currentService.slug}`);
+        revalidatePath(`/services`);
+        revalidatePath(`/services/${currentService.slug}`);
     } catch (error: any) {
         return { success: false, error: error.message || "Failed | Delete Service" };
     }

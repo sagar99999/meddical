@@ -16,6 +16,7 @@ export async function createSubscriber(email: string) {
         }
         await Subscribers.create({ email })
         revalidatePath("/dashboard/subscribers")
+        revalidatePath("/subscribers")
         return { success: true, error: false };
     } catch (error: any) {
         return { success: false, error: error.message || "Failed | Create Subscriber" };
@@ -35,6 +36,7 @@ export async function deleteSubscriber(email: string) {
 
         await Subscribers.findOneAndDelete({ email })
         revalidatePath("/dashboard/subscribers")
+        revalidatePath("/subscribers")
         return { success: true, error: false };
     } catch (error: any) {
         return { success: false, error: error.message || "Failed | Delete Subscriber" };

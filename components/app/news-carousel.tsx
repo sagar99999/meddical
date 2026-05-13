@@ -55,7 +55,7 @@ function CarouselSlide({ news }: { news: NewsCarouselProps[] }) {
                 <Link href={`/news/${singleNews.slug}`} key={singleNews._id}>
                     <div className='flex gap-6 rounded-sm overflow-hidden'>
                         <div className='size-45 relative'>
-                            <Image className='size-50 object absolute object-cover' src={singleNews.image} alt={singleNews.title} fill sizes="180px" />
+                            <Image className='size-50 object absolute object-cover' src={singleNews.image} alt={singleNews.title} fill sizes="500px" />
                         </div>
                         <div>
                             <p className='text-brand mb-3 tracking-wide line-clamp-2'>Monday 05, September 2021 | By Author</p>

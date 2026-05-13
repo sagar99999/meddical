@@ -20,6 +20,7 @@ export default async function createContacts(payload: ContactFormSchemaType) {
         })
 
         revalidatePath("/dashboard/contacts")
+        revalidatePath("/contacts")
         return { success: true, error: false };
     } catch (error: any) {
         return { success: false, error: error.message || "Failed | Create Contact" };
@@ -39,6 +40,7 @@ export async function deleteContact(id: string) {
 
         await Contacts.findOneAndDelete({ _id: id })
         revalidatePath("/dashboard/contacts")
+        revalidatePath("/contacts")
         return { success: true, error: false };
     } catch (error: any) {
         return { success: false, error: error.message || "Failed | Delete Contact" };

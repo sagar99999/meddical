@@ -1,5 +1,4 @@
 import Image from "next/image"
-import { Send } from "lucide-react"
 import { FacebookIcon, InstagramIcon, LinkedInIcon } from "../icons/social"
 import Link from "next/link"
 import NewsletterForm from "./newsletter-form"
@@ -27,9 +26,9 @@ export default function Footer() {
                     <div>
                         <p className="font-semibold mb-6 tracking-wider text-lg">Contact Us</p>
                         <ul>
-                            <li className="mb-3 hover:text-[#e0e0e0]"><a href="">Call: (+977) 98-123-131-09</a></li>
-                            <li className="mb-3 hover:text-[#e0e0e0]"><a href="">Email: support@meddical.com</a></li>
-                            <li className="hover:text-[#e0e0e0]"><a href="">Address: Kathmandu, Nepal</a></li>
+                            <li className="mb-3 hover:text-[#e0e0e0]">Call: (+977) 98-123-131-09</li>
+                            <li className="mb-3 hover:text-[#e0e0e0]">Email: support@meddical.com</li>
+                            <li className="hover:text-[#e0e0e0]">Address: Kathmandu, Nepal</li>
                         </ul>
                     </div>
                     <div>
@@ -43,15 +42,15 @@ export default function Footer() {
                         © 2021 Meddical All Rights Reserved by PNTEC-LTD
                     </p>
                     <ul className="flex gap-6">
-                        <li><a href="">
+                        <li><Link href="#">
                             <LinkedInIcon />
-                        </a></li>
-                        <li><a href="">
+                        </Link></li>
+                        <li><Link href="#">
                             <FacebookIcon />
-                        </a></li>
-                        <li><a href="">
+                        </Link></li>
+                        <li><Link href="#">
                             <InstagramIcon />
-                        </a></li>
+                        </Link></li>
                     </ul>
                 </div>
             </div>
