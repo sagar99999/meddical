@@ -50,6 +50,9 @@ const NewsSchema: Schema<News> = new Schema(
     }
 );
 
+// MongoDB full-text search index for sidebar search.
+NewsSchema.index({ title: "text", description: "text" });
+
 /**
  * 4. Prevent model overwrite in Next.js
  */

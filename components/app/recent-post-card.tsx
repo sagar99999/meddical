@@ -7,27 +7,36 @@ import { getTotalNewsPages, getRecentNews } from "@/actions/news"
 
 type RecentPostCardProps = {
     page: number;
-    category: string
+    category: string;
+    q: string;
 }
 
-export default async function RecentPostCard({ page, category }: RecentPostCardProps) {
+export default async function RecentPostCard({ page, category, q }: RecentPostCardProps) {
 
     const getPageLink = (newPage: number | null) => {
-        const params = new URLSearchParams();
+        const params = new URLSearchParams()
 
+        // query params: search check
+        if (q) {
+            params.set("q", q)
+        }
+
+        // query params: category check
         if (category) {
             params.set('category', category);
         }
 
+        // query params: page check
         if (newPage) {
             params.set('page', String(newPage));
         }
 
         return `/news?${params.toString()}`;
-    };
-    const pages = await getTotalNewsPages(category)
+    }
+
+    const pages = await getTotalNewsPages(category, q)
     const currentPage = Number(page || 1)
-    const recentNews = await getRecentNews(Number(currentPage || 1), category)
+    const recentNews = await getRecentNews(Number(currentPage || 1), category, q)
 
     if (!recentNews.data || !pages.success || pages.data == null) {
         return <h1>Not Found</h1>

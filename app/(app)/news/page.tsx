@@ -7,6 +7,7 @@ type NewsPageProps = {
     searchParams: Promise<{
         page: number;
         category: string;
+        q: string;
     }>
 }
 
@@ -20,7 +21,7 @@ export default async function NewsPage({ searchParams }: NewsPageProps) {
 
             <div className="p-5 pt-15">
                 <div className="max-w-340 flex gap-6 mx-auto">
-                    <RecentPostCard category={params.category} page={Number(params.page) || 1} />                    {/* Right Bar */}
+                    <RecentPostCard  q={params.q} category={params.category} page={Number(params.page) || 1} />                    {/* Right Bar */}
                     <RecentPostFilter searchParams={params} />
                 </div>
             </div>

@@ -1,14 +1,15 @@
 import Image from "next/image"
-import { Search } from "lucide-react"
 import dbConnect from "@/lib/mongoose"
 import News from "@/models/news"
 import Link from "next/link"
 import { format } from "date-fns"
+import SearchNews from "./search-news"
 
 type RecentPostFilterProps = {
   searchParams: {
     page: number | null;
-    category?: string | null
+    category?: string | null;
+    q?: string | null
   }
 }
 
@@ -17,15 +18,17 @@ export default async function RecentPostFilter({ searchParams }: RecentPostFilte
   const getCategoryLink = (newCategory: string | null) => {
     const params = new URLSearchParams();
 
-    Object.entries(searchParams).forEach(([key, value]) => {
-      if (value === undefined) return;
-      if (Array.isArray(value)) {
-        value.forEach(v => params.append(key, v));
-      } else {
-        params.set(key, String(1));
-      }
-    })
+    // query params: page check
+    if (searchParams.page) {
+      params.delete("page")
+    }
 
+    // query params: search check
+    if (searchParams.q) {
+      params.delete('q')
+    }
+
+    // query params: category check
     if (newCategory) {
       params.set('category', newCategory);
     } else {
@@ -33,7 +36,7 @@ export default async function RecentPostFilter({ searchParams }: RecentPostFilte
     }
 
     return `/news?${params.toString()}`;
-  };
+  }
 
   await dbConnect()
 
@@ -63,8 +66,7 @@ export default async function RecentPostFilter({ searchParams }: RecentPostFilte
   return (
     <div className="basis-100 shrink-0">
       <div className="relative mb-6">
-        <input className="bg-brand-1 placeholder:text-white font-light p-4 pr-10 tracking-wider rounded-sm text-white w-full" type="search" placeholder="Search" />
-        <Search className="size-6 text-white top-3.5 right-3 absolute" />
+        <SearchNews searchParams={searchParams} />
       </div>
       <div className="p-5 border rounded-sm mb-6">
         <h2 className="text-brand-1 text-4xl font-semibold mb-10 tracking-wide">Recent Posts</h2>
@@ -76,7 +78,8 @@ export default async function RecentPostFilter({ searchParams }: RecentPostFilte
                   <Image src={`${recentPost.image}`} alt={`${recentPost.title}`} fill sizes="80px" className="object-cover object-center rounded-sm" />
                 </div>
                 <div>
-                  <p className="text-brand mb-2 text-sm tracking-wide line-clamp-1">{format(recentPost.createdAt, 'eeee dd, MMMM yyyy')}</p>                  <p className="tracking-wide line-clamp-2 group-hover:underline">
+                  <p className="text-brand mb-2 text-sm tracking-wide line-clamp-1">{format(recentPost.createdAt, 'eeee dd, MMMM yyyy')}</p>
+                  <p className="tracking-wide line-clamp-2 group-hover:underline">
                     {recentPost.description}
                   </p>
                 </div>
