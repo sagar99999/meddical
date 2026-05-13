@@ -216,21 +216,36 @@ export async function getRecentNews(
             filter.category = currentCategory;
         }
 
-        // Search filter (optional)
+        // Search filter using MongoDB text index
         if (q && q.trim() !== "") {
-            filter.$or = [
-                { title: { $regex: q, $options: "i" } },
-                { description: { $regex: q, $options: "i" } },
-            ];
+            filter.$text = { $search: q.trim() };
         }
 
+        // Fetch data
         const news = await News.find(filter)
-            .sort({ createdAt: -1 })
+            .sort(
+                q && q.trim() !== ""
+                    ? { score: { $meta: "textScore" } } // rank by relevance if searching
+                    : { createdAt: -1 } // otherwise newest first
+            )
             .skip(skip)
             .limit(limit)
             .lean();
 
-        return { success: true, error: false, data: news };
+        // Total count for pagination
+        const total = await News.countDocuments(filter);
+        const totalPages = Math.ceil(total / limit);
+
+        return {
+            success: true,
+            error: false,
+            data: news,
+            pagination: {
+                total,
+                totalPages,
+                currentPage,
+            },
+        };
     } catch (error: any) {
         return {
             success: false,
