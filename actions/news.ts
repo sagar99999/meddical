@@ -94,7 +94,8 @@ export async function updateNewsById(id: string, payload: z.infer<typeof formSch
                     slug: newSlug || currentNews.slug,
                     image: uploadResponse?.url || currentNews.image,
                     fileId: uploadResponse?.fileId || currentNews.fileId
-                }            },
+                }
+            },
             {
                 new: true,
                 runValidators: true,
@@ -166,42 +167,58 @@ export async function LikeNewsById(id: string) {
 }
 
 // server action | Get total number of news pages
-export async function getTotalNewsPages(currentCategory?: string) {
+export async function getRecentNews(
+    currentPage: number,
+    currentCategory?: string,
+    q?: string
+) {
     try {
-        await dbConnect()
-        // Build filter object
-        const filter: any = {};
-        if (currentCategory) filter.category = currentCategory
+        await dbConnect();
 
-        const totalNews = await News.countDocuments(filter.category ? filter : {})
-
-        // 3 news per page limit
-        const totalPages = Math.ceil(totalNews / 3)
-        return { success: true, error: false, data: totalPages };
-
-    } catch (error: any) {
-        return { success: false, error: error.message || "Failed | Get News page number" };
-    }
-}
-
-// server action | Get total number of news pages
-export async function getRecentNews(currentPage: number, currentCategory?: string) {
-    try {
-        await dbConnect()
         const limit = 3;
-        const skip = (currentPage - 1) * limit
+        const skip = (currentPage - 1) * limit;
 
-        // Build filter object
         const filter: any = {};
-        if (currentCategory) filter.category = currentCategory
 
-        const news = await News.find(filter.category ? filter : {}).sort({ createdAt: -1 }) // newest first
+        // Category filter (optional)
+        if (currentCategory) {
+            filter.category = currentCategory;
+        }
+
+        // Search filter using MongoDB text index
+        if (q && q.trim() !== "") {
+            filter.$text = { $search: q.trim() };
+        }
+
+        // Fetch data
+        const news = await News.find(filter)
+            .sort(
+                q && q.trim() !== ""
+                    ? { score: { $meta: "textScore" } }
+                    : { createdAt: -1 }
+            )
             .skip(skip)
             .limit(limit)
-            .lean()
+            .lean();
 
-        return { success: true, error: false, data: news }
+        // Total count for pagination
+        const total = await News.countDocuments(filter);
+        const totalPages = Math.ceil(total / limit);
+
+        return {
+            success: true,
+            error: false,
+            data: news,
+            pagination: {
+                total,
+                totalPages,
+                currentPage,
+            },
+        };
     } catch (error: any) {
-        return { success: false, error: error.message || "Failed | Get recent news" };
+        return {
+            success: false,
+            error: error.message || "Failed | Get recent news",
+        };
     }
 }
