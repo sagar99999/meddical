@@ -19,6 +19,7 @@ export async function createAppointment(payload: AppointmentFormSchemaData) {
         })
 
         revalidatePath("/dashboard/appointments")
+        revalidatePath("/appointments")
         return { success: true, error: false };
     } catch (error: any) {
         return { success: false, error: error.message || "Failed | Create Appointment" };
@@ -28,6 +29,10 @@ export async function createAppointment(payload: AppointmentFormSchemaData) {
 //server action | delete appointment
 export async function deleteAppointment(email: string) {
     try {
+        if (!email || typeof email !== 'string' || !email.includes('@')) {
+            return { success: false, error: "Invalid email address" };
+        }
+
         await dbConnect()
 
         const existingAppointment = await Appointments.findOne({ email })
@@ -38,6 +43,7 @@ export async function deleteAppointment(email: string) {
 
         await Appointments.findOneAndDelete({ email })
         revalidatePath("/dashboard/appointments")
+        revalidatePath("/appointments")
         return { success: true, error: false };
     } catch (error: any) {
         return { success: false, error: error.message || "Failed | Delete Appointment" };

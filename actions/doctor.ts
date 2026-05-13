@@ -17,7 +17,7 @@ export async function getDoctorsName() {
         const filteredDocs = docs.map(doc => ({
             name: doc.name
         }))
-        
+
         return { success: true, error: false, data: filteredDocs };
     } catch (error: any) {
         return { success: false, error: error.message || "Failed | Get Doctor" };
@@ -58,6 +58,9 @@ export async function createDoctor(payload: z.infer<typeof formSchema>, formData
 
         // 4.✅ Revoke cached paths
         revalidatePath(`/dashboard/doctors`);
+        revalidatePath(`/doctors`);
+        revalidatePath(`/`);
+        revalidatePath(`/about`);
         return { success: true, error: false };
     } catch (error: any) {
         return { success: false, error: error.message || "Failed | Create Doctor" };
@@ -123,6 +126,10 @@ export async function updateDoctorById(id: string, payload: z.infer<typeof formS
         // 6.✅ Revoke cached paths
         revalidatePath(`/dashboard/doctors`);
         revalidatePath(`/dashboard/doctors/${payload.slug}`);
+        revalidatePath(`/doctors`);
+        revalidatePath(`/doctors/${payload.slug}`);
+        revalidatePath(`/`);
+        revalidatePath(`/about`);
         return { success: true, error: false };
     } catch (error: any) {
         return { success: false, error: error.message || "Failed | Update Doctor" };
@@ -151,8 +158,11 @@ export async function deleteDoctorById(id: string) {
         // 4. Revoke cached paths
         revalidatePath(`/dashboard/doctors`);
         revalidatePath(`/dashboard/doctors/${currentDoctor.slug}`);
+        revalidatePath(`/doctors`);
+        revalidatePath(`/doctors/${currentDoctor.slug}`);
+        revalidatePath(`/`);
+        revalidatePath(`/about`);
     } catch (error: any) {
         return { success: false, error: error.message || "Failed | Delete Doctor" };
     }
 }
-

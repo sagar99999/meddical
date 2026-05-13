@@ -14,9 +14,9 @@ export default function NavBar() {
                     <li><Link className="hover:text-[#e0e0e0]" href="/contact">Contact</Link></li>
                 </ul>
                 <div className="flex gap-6 items-center">
-                    <button className="cursor-pointer hover:text-[#e0e0e0]">
+                    <Link href="/news" className="cursor-pointer hover:text-[#e0e0e0]">
                         <Search className="size-6" />
-                    </button>
+                    </Link>
                     <Link href="/appointment" className="bg-brand-2 tracking-wide cursor-pointer font-normal px-10 py-2 rounded-3xl text-black">Appointment</Link>
                 </div>
             </div>

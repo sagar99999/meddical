@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { Calendar, User, Eye, MoveRight, MoveLeft } from "lucide-react"
+import { Calendar, User, Eye, MoveRight, MoveLeft, Image as ImageIcon } from "lucide-react"
 import Link from "next/link"
 import { format } from "date-fns"
 import LikeBtn from "./like-btn"
@@ -37,13 +37,10 @@ export default async function RecentPostCard({ page, category, q }: RecentPostCa
     const currentPage = Number(page || 1)
     const recentNews = await getRecentNews(Number(currentPage || 1), category, q)
 
-    if (!recentNews.data || !recentNews.pagination) {
-        return <h1>Not Found</h1>
-    }
     return (
         <div className="grow">
             {
-                recentNews.data.map(singleNews => (
+                recentNews.data?.length ? recentNews.data.map(singleNews => (
                     <div key={singleNews._id.toString()} className="mb-10">
                         <div className="relative w-full h-130 mb-6">
                             <Image className="absolute shadow-xl object-cover object-center" src={singleNews.image} alt={singleNews.title} fill sizes="(max-width: 1024px) 100vw, 900px" />
@@ -75,7 +72,11 @@ export default async function RecentPostCard({ page, category, q }: RecentPostCa
                             <MoveRight className="size-5" />
                         </Link>
                     </div>
-                ))
+                )) : <div className="flex flex-col items-center">
+                    <ImageIcon className="size-20 mt-15 mb-3 text-brand-1" />
+                    <p className="text-2xl tracking-tighter mb-1 text-brand-1">No Articles Found</p>
+                    <p className="tracking-tighter text-brand-1 ">Reload, or adjust your filter</p>
+                </div>
             }
             <div className="flex items-center">
                 {
@@ -87,16 +88,16 @@ export default async function RecentPostCard({ page, category, q }: RecentPostCa
                 <div className="grow">
                     <ul className="flex justify-center items-center">
                         {
-                            Array.from({ length: recentNews.pagination.totalPages }, (_, ind) => <li key={ind} className="flex">
+                            Array.from({ length: recentNews.pagination?.totalPages || 0 }, (_, ind) => <li key={ind} className="flex">
                                 <Link className="text-brand-1" href={getPageLink(ind + 1)}>{ind + 1}</Link>
-                                {ind + 1 < recentNews.pagination.totalPages && <span className="mx-2">-</span>}
+                                {ind + 1 < recentNews.pagination!.totalPages && <span className="mx-2">-</span>}
                             </li>
                             )
                         }
                     </ul>
                 </div>
                 {
-                    currentPage < recentNews.pagination.totalPages && <Link className="flex hover:underline text-brand items-center tracking-wide gap-2" href={getPageLink(currentPage + 1)}>
+                    currentPage < recentNews.pagination!.totalPages && <Link className="flex hover:underline text-brand items-center tracking-wide gap-2" href={getPageLink(currentPage + 1)}>
                         Next Page
                         <MoveRight className="size-5 text-brand-1" />
                     </Link>

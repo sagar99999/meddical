@@ -41,6 +41,11 @@ export async function createNews(payload: z.infer<typeof formSchema>, formData?:
 
         // 4.✅ Revoke cached paths
         revalidatePath(`/dashboard/news`);
+        revalidatePath(`/news`);
+        revalidatePath(`/`);
+        revalidatePath(`/about`);
+        revalidatePath(`/doctors`);
+        revalidatePath(`/contact`);
         return { success: true, error: false };
     } catch (error: any) {
         return { success: false, error: error.message || "Failed | Create News" };
@@ -106,6 +111,12 @@ export async function updateNewsById(id: string, payload: z.infer<typeof formSch
         // 6.✅ Revoke cached paths
         revalidatePath(`/dashboard/news`);
         revalidatePath(`/dashboard/news/${payload.slug}`);
+        revalidatePath(`/news`);
+        revalidatePath(`/news/${currentNews.slug}`);
+        revalidatePath(`/`);
+        revalidatePath(`/about`);
+        revalidatePath(`/doctors`);
+        revalidatePath(`/contact`);
         return { success: true, error: false };
     } catch (error: any) {
         return { success: false, error: error.message || "Failed | Update News" };
@@ -134,6 +145,12 @@ export async function deleteNewsById(id: string) {
         // 4. Revoke cached paths
         revalidatePath(`/dashboard/news`);
         revalidatePath(`/dashboard/news/${currentNews.slug}`);
+        revalidatePath(`/news`);
+        revalidatePath(`/news/${currentNews.slug}`);
+        revalidatePath(`/`);
+        revalidatePath(`/about`);
+        revalidatePath(`/doctors`);
+        revalidatePath(`/contact`);
         return { success: true, error: false };
     } catch (error: any) {
         return { success: false, error: error.message || "Failed | Delete News" };
@@ -160,6 +177,12 @@ export async function LikeNewsById(id: string) {
         // 4. Revoke cached paths
         revalidatePath(`/dashboard/news`);
         revalidatePath(`/dashboard/news/${currentNews.slug}`);
+        revalidatePath(`/news`);
+        revalidatePath(`/news/${currentNews.slug}`);
+        revalidatePath(`/`);
+        revalidatePath(`/about`);
+        revalidatePath(`/doctors`);
+        revalidatePath(`/contact`);
         return { success: true, error: false };
     } catch (error: any) {
         return { success: false, error: error.message || "Failed | Like News" };
@@ -219,6 +242,49 @@ export async function getRecentNews(
         return {
             success: false,
             error: error.message || "Failed | Get recent news",
+        };
+    }
+}
+
+// server action | INCEASE views of news pages
+export async function increaseNewsViews(
+    slug: string
+) {
+    try {
+        await dbConnect();
+
+        if (!slug) {
+            return {
+                success: false,
+                error: "Failed | invalid slug",
+            }
+        }
+
+        // increment the view count
+        await News.updateOne(
+            { slug },
+            { $inc: { views: 1 } }
+        )
+
+        // Revoke cached paths
+        revalidatePath(`/dashboard/news`);
+        revalidatePath(`/dashboard/news/${slug}`);
+        revalidatePath(`/news`);
+        revalidatePath(`/news/${slug}`);
+        revalidatePath(`/`);
+        revalidatePath(`/about`);
+        revalidatePath(`/doctors`);
+        revalidatePath(`/contact`);
+
+        return {
+            success: true,
+            error: false,
+        }
+
+    } catch (error: any) {
+        return {
+            success: false,
+            error: error.message || "Failed | Increase news views",
         };
     }
 }

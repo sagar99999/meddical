@@ -9,16 +9,13 @@ import ContactCtaSection from '@/components/app/contact-cta-section'
 import dbConnect from '@/lib/mongoose'
 import Doctors from '@/models/doctors'
 import News from '@/models/news'
+import { Image as ImageIcon } from 'lucide-react'
 
 export default async function AboutPage() {
 
     await dbConnect()
     const docs = await Doctors.find().lean()
     const news = await News.find().lean()
-
-    if (!docs || !news) {
-        return <h1>Not found</h1>
-    }
 
     const filteredDocs = docs.map(doc => ({
         _id: doc._id.toString(),
@@ -71,13 +68,25 @@ export default async function AboutPage() {
             <div className="p-5 pt-15">
                 <div className="max-w-340 mx-auto">
                     <TitleSection title="Trusted Care" subtitle="Our Doctors" />
-                    <DoctorsCarousel docs={filteredDocs} />
+                    {
+                        filteredDocs.length ? <DoctorsCarousel docs={filteredDocs} /> : <div className="flex p-5 pt-10 py-20 flex-col items-center">
+                            <ImageIcon className="size-20 mb-3 text-brand-1" />
+                            <p className="text-2xl tracking-tighter mb-1 text-brand-1">No Doctors Found</p>
+                            <p className="tracking-tighter text-brand-1 ">Reload, check your connection</p>
+                        </div>
+                    }
                 </div>
             </div>
             <div className="p-5 mt-2">
                 <div className="max-w-340 mx-auto">
                     <TitleSection title="Better information, better health" subtitle="News" />
-                    <NewsCarousel news={filteredNews} />
+                    {
+                        filteredNews.length ? <NewsCarousel news={filteredNews} /> : <div className="flex p-5 pt-5 py-10 flex-col items-center">
+                            <ImageIcon className="size-20 mb-3 text-brand-1" />
+                            <p className="text-2xl tracking-tighter mb-1 text-brand-1">No Articles Found</p>
+                            <p className="tracking-tighter text-brand-1 ">Reload, check your connection</p>
+                        </div>
+                    }
                 </div>
             </div>
 
