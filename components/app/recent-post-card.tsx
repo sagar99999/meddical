@@ -3,7 +3,7 @@ import { Calendar, User, Eye, MoveRight, MoveLeft } from "lucide-react"
 import Link from "next/link"
 import { format } from "date-fns"
 import LikeBtn from "./like-btn"
-import { getTotalNewsPages, getRecentNews } from "@/actions/news"
+import { getRecentNews } from "@/actions/news"
 
 type RecentPostCardProps = {
     page: number;
@@ -37,10 +37,9 @@ export default async function RecentPostCard({ page, category, q }: RecentPostCa
     const currentPage = Number(page || 1)
     const recentNews = await getRecentNews(Number(currentPage || 1), category, q)
 
-    if (!recentNews.data) {
+    if (!recentNews.data || !recentNews.pagination) {
         return <h1>Not Found</h1>
     }
-
     return (
         <div className="grow">
             {

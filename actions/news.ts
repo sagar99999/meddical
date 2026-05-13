@@ -167,37 +167,6 @@ export async function LikeNewsById(id: string) {
 }
 
 // server action | Get total number of news pages
-export async function getTotalNewsPages(currentCategory?: string, q?: string) {
-    try {
-        await dbConnect()
-        // Build filter object
-        const filter: any = {};
-
-        // Category filter (optional)
-        if (currentCategory) {
-            filter.category = currentCategory;
-        }
-
-        // Search filter (optional)
-        if (q && q.trim() !== "") {
-            filter.$or = [
-                { title: { $regex: q, $options: "i" } },
-                { description: { $regex: q, $options: "i" } },
-            ];
-        }
-
-        const totalNews = await News.countDocuments(filter)
-
-        // 3 news per page limit
-        const totalPages = Math.ceil(totalNews / 3)
-        return { success: true, error: false, data: totalPages };
-
-    } catch (error: any) {
-        return { success: false, error: error.message || "Failed | Get News page number" };
-    }
-}
-
-// server action | Get total number of news pages
 export async function getRecentNews(
     currentPage: number,
     currentCategory?: string,
@@ -225,8 +194,8 @@ export async function getRecentNews(
         const news = await News.find(filter)
             .sort(
                 q && q.trim() !== ""
-                    ? { score: { $meta: "textScore" } } // rank by relevance if searching
-                    : { createdAt: -1 } // otherwise newest first
+                    ? { score: { $meta: "textScore" } }
+                    : { createdAt: -1 }
             )
             .skip(skip)
             .limit(limit)
